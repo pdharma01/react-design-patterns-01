@@ -109,6 +109,16 @@ i {
 
 /* #region -----| Styles |-------------------------------------  */
 
+.splitscreen-container {
+  /* grid-template-columns: 4fr 1fr; */
+  background-color: lime;
+}
+
+.splitscreen-container > div {
+  border: 1px solid red
+}
+
+
 
 
 
