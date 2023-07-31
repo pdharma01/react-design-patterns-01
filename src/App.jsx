@@ -40,6 +40,7 @@ function App() {
         </SplitScreenComponent>
         <SplitScreenComponent panelProps={rightPanelProps} />
       </SplitScreen>
+      
       <RegularList
         items={people}
         resourceName="person"
