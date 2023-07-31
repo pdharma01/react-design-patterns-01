@@ -53,7 +53,11 @@ function App() {
             itemComponent={SmallPersonListItem} />
 
             <Modal>
-              <h3>Modal</h3>
+            <NumberedList
+            items={people.slice(0,2)}
+            resourceName="person"
+            itemComponent={LargePersonListItem} />
+            <div></div>
             </Modal>
 
         </SplitScreenComponent>
