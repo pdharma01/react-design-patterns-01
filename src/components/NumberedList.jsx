@@ -6,10 +6,10 @@ const NumberedList = ({
   return (
     <>
     {items.map((item, index)=> (
-        <>
+        <div key={index + "numListKey"}>
         <h3>{index + 1}</h3>
-        <ItemComponent key={index} {...{[resourceName] : item}}/>
-        </>
+        <ItemComponent  {...{[resourceName] : item}}/>
+        </div>
     ))}
     </>
   )

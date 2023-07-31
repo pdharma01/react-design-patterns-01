@@ -2,10 +2,12 @@ import { useState } from 'react'
 import './App.css'
 import SplitScreen from './components/SplitScreen'
 import { people, products } from './components/data.js'
+import SplitScreenComponent from './components/SplitScreenComponent'
 import RegularList from './components/RegularList'
 import SmallPersonListItem from './components/people/SmallPersonListItem'
 import LargePersonListItem from './components/people/LargePersonListItem'
 import NumberedList from './components/NumberedList'
+import Modal from './components/Modal'
 
 function App() {
 
@@ -18,37 +20,55 @@ function App() {
   let rightPanelProps = {
     text: "Um Right!!",
     backgroundColor: "magenta",
-    gridFR: 5
+    gridFR: 1.5
+
   }
 
   console.log(products[0].name);
 
 
   // Pass SplitScreen Components as children 
-  const SplitScreenComponent = ({ panelProps }) => {
-    return (
-      <div style={{ backgroundColor: `${panelProps.backgroundColor}` }}
-      >{panelProps.text}</div>
-    )
-  }
+  // const SplitScreenComponent = ({ children, panelProps }) => {
+
+  //   let content = children
+  //   return (
+  //     <>
+  //     <div style={{ backgroundColor: `${panelProps.backgroundColor}` }}
+  //     >{panelProps.text}</div>
+  //     {content}
+  //     </>
+
+  //   )
+
 
   return (
     <>
       <SplitScreen>
-        <SplitScreenComponent panelProps={leftPanelProps}>
+
+        <SplitScreenComponent
+          panelProps={leftPanelProps}>
+          <RegularList
+            items={people}
+            resourceName="person"
+            itemComponent={SmallPersonListItem} />
+
+            <Modal>
+              <h3>Modal</h3>
+            </Modal>
 
         </SplitScreenComponent>
-        <SplitScreenComponent panelProps={rightPanelProps} />
+
+        <SplitScreenComponent
+          panelProps={rightPanelProps}>
+          <NumberedList
+            items={people}
+            resourceName="person"
+            itemComponent={LargePersonListItem} />
+            <div></div>
+        </SplitScreenComponent>
+
       </SplitScreen>
-      
-      <RegularList
-        items={people}
-        resourceName="person"
-        itemComponent={SmallPersonListItem} />
-      <NumberedList
-        items={people}
-        resourceName="person"
-        itemComponent={LargePersonListItem} />
+
     </>
   )
 }

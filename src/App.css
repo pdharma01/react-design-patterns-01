@@ -68,9 +68,9 @@ button {
   /* font is shorthand for size, style, etc  */
   font: inherit;
   color: inherit;
-  border: none;
-  background-color: transparent;
-  outline: none;
+  /* border: none; */
+  /* background-color: transparent; */
+  /* outline: none; */
 }
 
 /* Remix Icon Size  */

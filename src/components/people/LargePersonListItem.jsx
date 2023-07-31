@@ -6,7 +6,7 @@ const LargePersonListItem = ({person}) => {
         <h3>{name}</h3>
         <p>Age: {age} </p>
         <ul>
-            {hobbies.map((hobby)=> <li key={hobby}>{hobby}</li>) }
+            {hobbies.map((hobby, index)=> <li key={index + hobby}>{hobby}</li>) }
         </ul>
 
 

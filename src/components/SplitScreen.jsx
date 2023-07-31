@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const SplitScreen = ({ children }) => {
   const [left, right] = children;
   const leftGridFR = left.props.panelProps.gridFR
@@ -20,4 +22,8 @@ const SplitScreen = ({ children }) => {
   )
 }
 
+
+SplitScreen.propTypes = {
+  children: PropTypes.array.isRequired
+}
 export default SplitScreen

@@ -6,7 +6,7 @@ const RegularList = ({
   return (
     <>
     {items.map((item, index)=> (
-        <ItemComponent key={index} {...{[resourceName] : item}}/>
+        <ItemComponent key={index+ "regListKey"} {...{[resourceName] : item}}/>
     ))}
     </>
   )
