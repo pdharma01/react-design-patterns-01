@@ -2,7 +2,7 @@ import { useState } from "react"
 
 
 
-const Modal = ({ children }) => {
+const UnControlledModal = ({ children }) => {
 
     const [shouldShow, setshouldShow] = useState(false)
 
@@ -14,7 +14,7 @@ const Modal = ({ children }) => {
     }
     return (
         <>
-            <button onClick={() => setshouldShow(true)}>Show Modal</button>
+            <button onClick={() => setshouldShow(true)}>Show Uncontrolled Modal</button>
             {shouldShow && 
             (<ModalBackground>
                 <ModalBody>
@@ -26,4 +26,4 @@ const Modal = ({ children }) => {
     )
 }
 
-export default Modal
+export default UnControlledModal

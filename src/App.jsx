@@ -7,7 +7,9 @@ import RegularList from './components/RegularList'
 import SmallPersonListItem from './components/people/SmallPersonListItem'
 import LargePersonListItem from './components/people/LargePersonListItem'
 import NumberedList from './components/NumberedList'
-import Modal from './components/Modal'
+import UnControlledModal from './components/UnControlledModal'
+import ControlledForm from './components/ControlledForm'
+import ControlledModal from './components/ControlledModal'
 
 function App() {
 
@@ -52,13 +54,14 @@ function App() {
             resourceName="person"
             itemComponent={SmallPersonListItem} />
 
-            <Modal>
+          <UnControlledModal>
             <NumberedList
-            items={people.slice(0,2)}
-            resourceName="person"
-            itemComponent={LargePersonListItem} />
-            <div></div>
-            </Modal>
+              items={people.slice(0, 1)}
+              resourceName="person"
+              itemComponent={LargePersonListItem} />
+          </UnControlledModal>
+              <ControlledForm/>
+              <ControlledModal></ControlledModal>
 
         </SplitScreenComponent>
 
@@ -68,7 +71,7 @@ function App() {
             items={people}
             resourceName="person"
             itemComponent={LargePersonListItem} />
-            <div></div>
+          <div></div>
         </SplitScreenComponent>
 
       </SplitScreen>
