@@ -137,6 +137,13 @@ i {
  width: 50%;
 }
 
+.controlled-form {
+  background-color: aquamarine;
+  border: 2px solid blue;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 
 
 

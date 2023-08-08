@@ -10,9 +10,15 @@ import NumberedList from './components/NumberedList'
 import UnControlledModal from './components/UnControlledModal'
 import ControlledForm from './components/ControlledForm'
 import ControlledModal from './components/ControlledModal'
+import UncontrolledOnboardingFlow from './components/UncontrolledOnboardingFlow'
+import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
 
 function App() {
+  const [shouldShow, setShouldShow] = useState(false)
+  const [onboardingData, setOnboardingData] = useState({});
+    const [currentIndex, setCurrentIndex] = useState(0);
 
+  // SplitScreen 
   let leftPanelProps = {
     text: "OK Left!!",
     backgroundColor: "salmon",
@@ -26,27 +32,50 @@ function App() {
 
   }
 
-  console.log(products[0].name);
+  // Controlled Modal 
+  const onRequestClose = () => {
+    setShouldShow(false);
+
+  }
+
+  // Onboarding Flow 
+  const onNext = (stepData, isFinished) => {
+
+    setCurrentIndex(currentIndex+1);
+    setOnboardingData({...onboardingData, ...stepData})
+    if(isFinished) console.log({...onboardingData, ...stepData});
+
+  }
+
+  const onFinish=() => {
+    console.log("FINISH");
+  }
 
 
-  // Pass SplitScreen Components as children 
-  // const SplitScreenComponent = ({ children, panelProps }) => {
+  const StepOne = ({ goToNext }) => (
+    <>
+      <h3>Step 1: Name</h3>
+      <form>
 
-  //   let content = children
-  //   return (
-  //     <>
-  //     <div style={{ backgroundColor: `${panelProps.backgroundColor}` }}
-  //     >{panelProps.text}</div>
-  //     {content}
-  //     </>
+        <button onClick={() => goToNext({ name: "John Doe" })} >Next</button>
+      </form>
+    </>
+  );
+  const StepTwo = ({ goToNext }) => (
+    <>
+      <h3>Step 2: Age</h3>
+      <button onClick={() => goToNext({ age: 33 })}>Next</button>
+    </>
+  );
 
-  //   )
+
 
 
   return (
     <>
       <SplitScreen>
 
+        {/*---------- Left Panel -----  */}
         <SplitScreenComponent
           panelProps={leftPanelProps}>
           <RegularList
@@ -60,18 +89,46 @@ function App() {
               resourceName="person"
               itemComponent={LargePersonListItem} />
           </UnControlledModal>
-              <ControlledForm/>
-              <ControlledModal></ControlledModal>
+
+          <ControlledForm />
+          <ControlledModal></ControlledModal>
+
+          <UncontrolledOnboardingFlow onFinish={(data) => {
+            console.log(data.name + data.age);
+          }}>
+            <StepOne />
+            <StepTwo />
+          </UncontrolledOnboardingFlow>
+
+          <ControlledOnboardingFlow 
+          currentIndex={currentIndex} 
+          onNext={onNext}
+          // onFinish={()=>console.log("finish")}
+          
+          >
+            <StepOne />
+            <StepTwo />
+          </ControlledOnboardingFlow>
+          <h3>{Object.values(onboardingData)}</h3>
 
         </SplitScreenComponent>
 
+
+        {/*---------- Right Panel -----  */}
         <SplitScreenComponent
           panelProps={rightPanelProps}>
           <NumberedList
             items={people}
             resourceName="person"
             itemComponent={LargePersonListItem} />
-          <div></div>
+
+          {/*--------------- Controlled Modal  ------------*/}
+          <button onClick={() => setShouldShow(true)}>Show Uncontrolled Modal</button>
+          <ControlledModal
+            shouldShow={shouldShow}
+            onRequestClose={onRequestClose}>
+          </ControlledModal>
+
         </SplitScreenComponent>
 
       </SplitScreen>
