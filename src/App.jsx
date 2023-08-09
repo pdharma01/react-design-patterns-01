@@ -43,14 +43,9 @@ function App() {
 
     setCurrentIndex(currentIndex+1);
     setOnboardingData({...onboardingData, ...stepData})
-    if(isFinished) console.log({...onboardingData, ...stepData});
+    if(isFinished) console.log("FINISHED" + {...onboardingData, ...stepData});
 
   }
-
-  const onFinish=() => {
-    console.log("FINISH");
-  }
-
 
   const StepOne = ({ goToNext }) => (
     <>
@@ -102,10 +97,7 @@ function App() {
 
           <ControlledOnboardingFlow 
           currentIndex={currentIndex} 
-          onNext={onNext}
-          // onFinish={()=>console.log("finish")}
-          
-          >
+          onNext={onNext}>
             <StepOne />
             <StepTwo />
           </ControlledOnboardingFlow>
