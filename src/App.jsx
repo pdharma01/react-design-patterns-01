@@ -12,6 +12,7 @@ import ControlledForm from './components/ControlledForm'
 import ControlledModal from './components/ControlledModal'
 import UncontrolledOnboardingFlow from './components/UncontrolledOnboardingFlow'
 import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
+import printPropsHOC from './components/printPropsHOC'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -62,6 +63,10 @@ function App() {
       <button onClick={() => goToNext({ age: 33 })}>Next</button>
     </>
   );
+
+  // Higher Order Components (HOC) 
+
+  const LargePersonListWrapped = printPropsHOC(LargePersonListItem)
 
 
 
@@ -120,6 +125,8 @@ function App() {
             shouldShow={shouldShow}
             onRequestClose={onRequestClose}>
           </ControlledModal>
+
+<LargePersonListWrapped person={people[0]} printProp={"printProp"}/>
 
         </SplitScreenComponent>
 
