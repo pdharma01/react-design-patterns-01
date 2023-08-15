@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import SplitScreen from './components/SplitScreen'
+
+// Data 
 import { people, products } from './components/data.js'
+
+// Components 
+import SplitScreen from './components/SplitScreen'
 import SplitScreenComponent from './components/SplitScreenComponent'
 import RegularList from './components/RegularList'
 import SmallPersonListItem from './components/people/SmallPersonListItem'
@@ -12,11 +16,16 @@ import ControlledForm from './components/ControlledForm'
 import ControlledModal from './components/ControlledModal'
 import UncontrolledOnboardingFlow from './components/UncontrolledOnboardingFlow'
 import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
+import printProps from './components/printProps'
+import withUser from './components/withUser'
+import UserInfoForm from './components/UserInfoForm'
+
+
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
   const [onboardingData, setOnboardingData] = useState({});
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // SplitScreen 
   let leftPanelProps = {
@@ -41,9 +50,9 @@ function App() {
   // Onboarding Flow 
   const onNext = (stepData, isFinished) => {
 
-    setCurrentIndex(currentIndex+1);
-    setOnboardingData({...onboardingData, ...stepData})
-    if(isFinished) console.log("FINISHED" + {...onboardingData, ...stepData});
+    setCurrentIndex(currentIndex + 1);
+    setOnboardingData({ ...onboardingData, ...stepData })
+    if (isFinished) console.log("FINISHED" + { ...onboardingData, ...stepData });
 
   }
 
@@ -62,6 +71,16 @@ function App() {
       <button onClick={() => goToNext({ age: 33 })}>Next</button>
     </>
   );
+
+  // Higher Order Components 
+
+  // Wrapper console logs all props . Add person object to ListItem Component 
+  const PrintPropsWrapper = printProps(LargePersonListItem);
+
+  const WithUserWrapper = withUser(LargePersonListItem, 2);
+
+
+
 
 
 
@@ -95,9 +114,9 @@ function App() {
             <StepTwo />
           </UncontrolledOnboardingFlow>
 
-          <ControlledOnboardingFlow 
-          currentIndex={currentIndex} 
-          onNext={onNext}>
+          <ControlledOnboardingFlow
+            currentIndex={currentIndex}
+            onNext={onNext}>
             <StepOne />
             <StepTwo />
           </ControlledOnboardingFlow>
@@ -114,12 +133,23 @@ function App() {
             resourceName="person"
             itemComponent={LargePersonListItem} />
 
-          {/*--------------- Controlled Modal  ------------*/}
+          {/* =================    Controlled Modal ================== */}
           <button onClick={() => setShouldShow(true)}>Show Uncontrolled Modal</button>
           <ControlledModal
             shouldShow={shouldShow}
             onRequestClose={onRequestClose}>
           </ControlledModal>
+
+          {/* =================   Higher Order Components  ===============*/}
+          <PrintPropsWrapper
+            person={people[0]}
+            propA="propA"
+            propB={5} />
+
+            <WithUserWrapper/>
+            <UserInfoForm/>
+
+
 
         </SplitScreenComponent>
 

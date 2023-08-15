@@ -1,8 +1,10 @@
 const LargePersonListItem = ({person}) => {
-    const {name, age, hobbies} = person;
+    const {name, age, hobbies} = person || {};
 
   return (
-    <div>
+
+    person ? 
+    (<div>
         <h3>{name}</h3>
         <p>Age: {age} </p>
         <ul>
@@ -10,7 +12,9 @@ const LargePersonListItem = ({person}) => {
         </ul>
 
 
-    </div>
+    </div>) 
+    :
+    <div>...Loading</div>
 
   )
 }
