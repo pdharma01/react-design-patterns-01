@@ -19,7 +19,7 @@ import withEditableUser from './components/withEditableUser'
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
   const [onboardingData, setOnboardingData] = useState({});
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // SplitScreen 
   let leftPanelProps = {
@@ -44,9 +44,9 @@ function App() {
   // Onboarding Flow 
   const onNext = (stepData, isFinished) => {
 
-    setCurrentIndex(currentIndex+1);
-    setOnboardingData({...onboardingData, ...stepData})
-    if(isFinished) console.log("FINISHED" + {...onboardingData, ...stepData});
+    setCurrentIndex(currentIndex + 1);
+    setOnboardingData({ ...onboardingData, ...stepData })
+    if (isFinished) console.log("FINISHED" + { ...onboardingData, ...stepData });
 
   }
 
@@ -70,7 +70,7 @@ function App() {
 
   const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
   const LargePersonListWithUser = withUser(LargePersonListItem, 2);
-  const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 2)
+  const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 1)
 
 
 
@@ -104,9 +104,9 @@ function App() {
             <StepTwo />
           </UncontrolledOnboardingFlow>
 
-          <ControlledOnboardingFlow 
-          currentIndex={currentIndex} 
-          onNext={onNext}>
+          <ControlledOnboardingFlow
+            currentIndex={currentIndex}
+            onNext={onNext}>
             <StepOne />
             <StepTwo />
           </ControlledOnboardingFlow>
@@ -119,7 +119,7 @@ function App() {
         <SplitScreenComponent
           panelProps={rightPanelProps}>
           <NumberedList
-            items={people}
+            items={people.slice(0,2)}
             resourceName="person"
             itemComponent={LargePersonListItem} />
 
@@ -130,8 +130,9 @@ function App() {
             onRequestClose={onRequestClose}>
           </ControlledModal>
 
-<LargePersonListWrapped person={people[0]} printProp={"printProp"}/>
-<LargePersonListWithUser/>
+          <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
+          <LargePersonListWithUser />
+          <LargePersonListWithEditableUser />
 
         </SplitScreenComponent>
 
