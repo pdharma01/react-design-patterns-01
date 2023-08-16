@@ -13,6 +13,8 @@ import ControlledModal from './components/ControlledModal'
 import UncontrolledOnboardingFlow from './components/UncontrolledOnboardingFlow'
 import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
 import printPropsHOC from './components/printPropsHOC'
+import withUser from './components/withUser'
+import withEditableUser from './components/withEditableUser'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -66,7 +68,9 @@ function App() {
 
   // Higher Order Components (HOC) 
 
-  const LargePersonListWrapped = printPropsHOC(LargePersonListItem)
+  const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
+  const LargePersonListWithUser = withUser(LargePersonListItem, 2);
+  const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 2)
 
 
 
@@ -127,6 +131,7 @@ function App() {
           </ControlledModal>
 
 <LargePersonListWrapped person={people[0]} printProp={"printProp"}/>
+<LargePersonListWithUser/>
 
         </SplitScreenComponent>
 

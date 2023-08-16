@@ -1,13 +1,18 @@
 const printPropsHOC = (Component) => {
 
 
-    const ReturnedComponent = (props)=>{
+    const ReturnedComponent = (props) => {
         console.log(props);
-        return (<Component {...props}/>)
+        return (
+            <>
+                <h5>LargeListItemComponent in printProps Wrapper</h5>
+                <Component {...props} />
+            </>
+        )
     }
 
 
-  return (ReturnedComponent)
+    return (ReturnedComponent)
 }
 
 export default printPropsHOC
