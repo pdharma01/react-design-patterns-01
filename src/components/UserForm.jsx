@@ -1,14 +1,9 @@
-import { useRef } from "react"
-
 
 const UserForm = ({ person, nameRef, ageRef, handleSubmit, handleReset }) => {
 
     const { name, age } = person || {};
 
-    // let nameRef = useRef()
-    // let ageRef = useRef()
-
-    return (
+    return person ? (
         <>
             <h5>User Form</h5>
 
@@ -31,7 +26,7 @@ const UserForm = ({ person, nameRef, ageRef, handleSubmit, handleReset }) => {
                 <button type="submit" onClick={()=>handleReset()}
                 >Reset</button>
         </>
-    )
+    ) : (<p>Loading</p>)
 }
 
 export default UserForm

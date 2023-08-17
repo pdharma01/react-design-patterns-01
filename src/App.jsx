@@ -71,7 +71,6 @@ function App() {
 
   const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
   const LargePersonListWithUser = withUser(LargePersonListItem, 2);
-  // const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 1)
   const UserFormWithEditableUser = withEditableUser(UserForm, 2)
 
 
@@ -134,8 +133,8 @@ function App() {
 
           <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
           <LargePersonListWithUser />
-          {/* <LargePersonListWithEditableUser /> */}
           <UserFormWithEditableUser/>
+          <UserForm/>
 
         </SplitScreenComponent>
 

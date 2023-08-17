@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 
-const withEditableUser = (Component, userId) => {
+const WithEditableUser = (Component, userId) => {
     const [originalUser, setOriginalUser] = useState(null)
     const [user, setUser] = useState(null);
     let nameRef = useRef()
@@ -74,4 +74,4 @@ const withEditableUser = (Component, userId) => {
     return (WithEditableUserWrapper)
 }
 
-export default withEditableUser
+export default WithEditableUser
