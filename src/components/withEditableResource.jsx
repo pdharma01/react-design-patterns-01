@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 
 
-const capitalize =(string)=> string.charAt(0).toUpperCase() + string.splice(1);
+const capitalize =(string)=> string.charAt(0).toUpperCase() + string.slice(1);
 
-const withEditableResource = (Component, resourcePath, resourceName) => {
-    let url = `http://localhost:5000/${resourcePath}`
+const withEditableResource = (Component, resourcePath, resourceName, itemId) => {
+    let url = `http://localhost:5000/${resourcePath}/${itemId}`
 
     const fetchData = async (url, request) => {
         let response = await fetch(url, request)

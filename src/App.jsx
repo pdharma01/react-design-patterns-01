@@ -16,6 +16,9 @@ import printPropsHOC from './components/printPropsHOC'
 import withUser from './components/withUser'
 import withEditableUser from './components/withEditableUser'
 import UserForm from './components/UserForm'
+import withEditableResource from './components/withEditableResource'
+import UserInfoForm from './components/UserInfoForm'
+import ProductInfoForm from './components/ProductInfoForm'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -72,7 +75,8 @@ function App() {
   const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
   const LargePersonListWithUser = withUser(LargePersonListItem, 2);
   const UserFormWithEditableUser = withEditableUser(UserForm, 2)
-
+  const ResourceUserFormWithEditable = withEditableResource(UserInfoForm, "users", "user", 2)
+const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "products", "product", 2)
 
 
 
@@ -134,7 +138,8 @@ function App() {
           <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
           <LargePersonListWithUser />
           <UserFormWithEditableUser/>
-          <UserForm/>
+          <ResourceUserFormWithEditable/>
+          <ProductInfoFormWithEditable/>
 
         </SplitScreenComponent>
 
