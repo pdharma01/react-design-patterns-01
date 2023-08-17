@@ -1,65 +1,72 @@
 import { useState, useEffect, useRef } from "react"
 
 const withEditableUser = (Component, userId) => {
+    const [originalUser, setOriginalUser] = useState(null)
     const [user, setUser] = useState(null);
     let nameRef = useRef()
     let ageRef = useRef()
 
-    let url = "http://localhost:5000/people"
+    let userUrl = `http://localhost:5000/people/${userId}`
+
+    useEffect(() => {
+        let getUserFromServer = async () => {
+            let userFromServer = await fetchUser();
+            setOriginalUser(userFromServer)
+            setUser(userFromServer);
+        }
+        getUserFromServer();
+    }, []);
 
     const fetchUser = async () => {
-        let userUrl = `${url}/${userId}`
-
         let response = await fetch(userUrl);
         if (!response.ok) return console.log("fetch not ok!");
         let data = await response.json()
         return data
     }
 
-    useEffect(() => {
-        let getUserFromServer = async () => {
-            let userFromServer = await fetchUser();
-            setUser(userFromServer);
-        }
-        getUserFromServer();
-    }, [])
+    const editUser = async (editedUser) => {
+        let response = await fetch(userUrl, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(editedUser)
+        })
 
-    useEffect(() => {
-        console.log(user);
-    }, [user])
+        if (!response.ok) return console.log("fetch not ok!");
+        // let postedItem = await response.json()
+        let data = await response.json()
+        return data
+    }
 
-    const handleSubmit = (event) => {
+    const handleReset= async ()=>{
+            let userFromServer = await editUser(originalUser)
+            setUser(userFromServer)
+    }
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
-
-        
         let changes = {};
         if (nameRef.current.value) changes["name"] = nameRef.current.value;
         if (ageRef.current.value) changes["age"] = ageRef.current.value;
-        Object.keys(changes).length != 0 ? setUser({...user,...changes}) : null;
+        if (Object.keys(changes).length != 0) {
 
+            let editedUser = { ...user, ...changes }
+            let userFromServer = await editUser(editedUser)
+            setUser(userFromServer)
+        }
     }
 
     const WithEditableUserWrapper = (props) => {
         return (
             <>
                 <h5>With Editable Use Wrapper</h5>
-
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder = {user ? user.name : "loading"}
-                        ref={nameRef}
-                    ></input>
-                    <input
-                        type="number"
-                        placeholder = {user ? user.age : "loading"}
-                        ref={ageRef}
-                    ></input>
-                    
-                    <button type="submit"
-                    >Submit</button>
-                </form>
-                <Component {...props} person={user} />
+                <Component {...props}
+                    person={user}
+                    nameRef={nameRef}
+                    ageRef={ageRef}
+                    handleSubmit={handleSubmit}
+                    handleReset={handleReset} />
             </>
 
         )

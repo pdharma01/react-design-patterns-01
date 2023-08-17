@@ -8,7 +8,6 @@ const withUser = (Component, userId) => {
 
     const fetchUser = async () => {
         let userUrl = `${url}/${userId}`
-        console.log(userUrl);
         let response = await fetch(userUrl)
         if (!response.ok) return console.log("fetch not ok!");
         let data = await response.json()

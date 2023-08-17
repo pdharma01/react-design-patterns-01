@@ -15,6 +15,7 @@ import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
 import printPropsHOC from './components/printPropsHOC'
 import withUser from './components/withUser'
 import withEditableUser from './components/withEditableUser'
+import UserForm from './components/UserForm'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -70,7 +71,8 @@ function App() {
 
   const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
   const LargePersonListWithUser = withUser(LargePersonListItem, 2);
-  const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 1)
+  // const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 1)
+  const UserFormWithEditableUser = withEditableUser(UserForm, 2)
 
 
 
@@ -132,7 +134,8 @@ function App() {
 
           <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
           <LargePersonListWithUser />
-          <LargePersonListWithEditableUser />
+          {/* <LargePersonListWithEditableUser /> */}
+          <UserFormWithEditableUser/>
 
         </SplitScreenComponent>
 
