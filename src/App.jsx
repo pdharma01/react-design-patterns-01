@@ -1,11 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-
-// Data 
-import { people, products } from './components/data.js'
-
-// Components 
 import SplitScreen from './components/SplitScreen'
+import { people, products } from './components/data.js'
 import SplitScreenComponent from './components/SplitScreenComponent'
 import RegularList from './components/RegularList'
 import SmallPersonListItem from './components/people/SmallPersonListItem'
@@ -16,11 +12,10 @@ import ControlledForm from './components/ControlledForm'
 import ControlledModal from './components/ControlledModal'
 import UncontrolledOnboardingFlow from './components/UncontrolledOnboardingFlow'
 import ControlledOnboardingFlow from './components/ControlledOnboardingFlow'
-import printProps from './components/printProps'
+import printPropsHOC from './components/printPropsHOC'
 import withUser from './components/withUser'
+import withEditableUser from './components/withEditableUser'
 import UserInfoForm from './components/UserInfoForm'
-
-
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -72,15 +67,12 @@ function App() {
     </>
   );
 
-  // Higher Order Components 
+  // Higher Order Components (HOC) 
 
-  // Wrapper console logs all props . Add person object to ListItem Component 
-  const PrintPropsWrapper = printProps(LargePersonListItem);
-
-  const WithUserWrapper = withUser(LargePersonListItem, 2);
-
-
-
+  const LargePersonListWrapped = printPropsHOC(LargePersonListItem);
+  const LargePersonListWithUser = withUser(LargePersonListItem, 2);
+  const LargePersonListWithEditableUser = withEditableUser(LargePersonListItem, 1)
+  // const UserFormWithEditableUser = withEditableUser(UserInfoForm)
 
 
 
@@ -129,27 +121,21 @@ function App() {
         <SplitScreenComponent
           panelProps={rightPanelProps}>
           <NumberedList
-            items={people}
+            items={people.slice(0,2)}
             resourceName="person"
             itemComponent={LargePersonListItem} />
 
-          {/* =================    Controlled Modal ================== */}
+          {/*--------------- Controlled Modal  ------------*/}
           <button onClick={() => setShouldShow(true)}>Show Uncontrolled Modal</button>
           <ControlledModal
             shouldShow={shouldShow}
             onRequestClose={onRequestClose}>
           </ControlledModal>
 
-          {/* =================   Higher Order Components  ===============*/}
-          <PrintPropsWrapper
-            person={people[0]}
-            propA="propA"
-            propB={5} />
-
-            <WithUserWrapper/>
-            <UserInfoForm/>
-
-
+          <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
+          <LargePersonListWithUser />
+          {/* <LargePersonListWithEditableUser /> */}
+          <UserInfoForm/>
 
         </SplitScreenComponent>
 

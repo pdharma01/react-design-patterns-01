@@ -1,8 +1,8 @@
-const printProps = (Component) => {
+const printPropsHOC = (Component) => {
   return (props)=>{
     console.log(props);
     return <Component {...props}/>
   }
 }
 
-export default printProps
+export default printPropsHOC

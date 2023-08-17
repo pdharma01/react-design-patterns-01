@@ -21,7 +21,7 @@ const withUser = (Component, userId) => {
 
     useEffect(() => {
       const getUser = async () => {
-        let userFromServer = await fetchUser(`http://localhost:5000/users/${userId}`);
+        let userFromServer = await fetchUser(`http://localhost:5000/people/${userId}`);
         setUser(userFromServer)
       }
       getUser()

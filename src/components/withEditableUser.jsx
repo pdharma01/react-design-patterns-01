@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
 const withEditableUser = (Component, userId) => {
-    let url = `http://localhost:5000/users/${userId}`
+    let url = `http://localhost:5000/people/${userId}`
 
     const fetchUser = async (url, request) => {
         let response = await fetch(url, request)
