@@ -2,7 +2,7 @@ const UserInfoForm =({ user, onChangeUser, onSaveUser, onResetUser }) => {
     const { screen_name, level } = user || {};
 
     return user ? (
-        <div>
+        <div className="section">
             <h3>UserInfoForm with Editable Resource</h3>
             <label>
                 Screen Name:

@@ -2,7 +2,7 @@ const ProductInfoForm =({ product, onChangeProduct, onSaveProduct, onResetProduc
     const { name, price, rating } = product || {};
 
     return product ? (
-        <div>
+        <div className="section">
             <h3>Product Info Form with Editable Resource</h3>
             <label>
                 Screen Name:

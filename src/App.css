@@ -80,13 +80,6 @@ i {
 /* #endregion  */
 
 /* #region -----| Reusable Styles |---------------------------------------*/
-.container {
-  /* limit how wide a container can go  */
-  max-width: 160rem;
-  /* center */
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
 
 .place-items-center {
   display: inline-flex;
@@ -102,16 +95,14 @@ i {
   display: grid;
 }
 
-.section {
-  padding-block: 5rem;
-}
+
 /* #endregion  */
 
 /* #region -----| Styles |-------------------------------------  */
 
 .splitscreen-container {
   /* grid-template-columns: 4fr 1fr; */
-  background-color: lime;
+  background-color: var(--color-0-xtra-light);
 }
 
 .splitscreen-container > div {
@@ -137,9 +128,16 @@ i {
  width: 50%;
 }
 
-.controlled-form {
-  background-color: aquamarine;
-  border: 2px solid blue;
+.container {
+  background-color: var(--color-2-medium);
+  padding: 1rem;
+  margin: .5rem;
+  border: 1px solid var(--color-0-xtra-light);
+}
+
+.section {
+  background-color: var(--color-1-light);
+  border: 2px solid var(--color-3-dark);
   padding: 1rem;
   margin: 1rem;
 }

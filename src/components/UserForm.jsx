@@ -4,7 +4,7 @@ const UserForm = ({ person, nameRef, ageRef, handleSubmit, handleReset }) => {
     const { name, age } = person || {};
 
     return person ? (
-        <>
+        <div className="section">
             <h5>User Form</h5>
 
             <form onSubmit={handleSubmit}>
@@ -25,7 +25,7 @@ const UserForm = ({ person, nameRef, ageRef, handleSubmit, handleReset }) => {
             </form>
                 <button type="submit" onClick={()=>handleReset()}
                 >Reset</button>
-        </>
+        </div>
     ) : (<p>Loading</p>)
 }
 

@@ -13,7 +13,7 @@ const ControlledForm = () => {
     }, [name])
 
     return (
-        <div className="controlled-form">
+        <div className="section">
             <h3>Controlled Form</h3>
             <form>
                 <p>{nameInputError}</p>

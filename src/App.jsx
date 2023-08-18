@@ -19,6 +19,9 @@ import UserForm from './components/UserForm'
 import withEditableResource from './components/withEditableResource'
 import UserInfoForm from './components/UserInfoForm'
 import ProductInfoForm from './components/ProductInfoForm'
+import LargePersonListItemWithHook from './components/people/LargePersonListItemWithHook'
+import LargeProductListItem from './components/people/LargeProductListItem'
+import LargeProductListItemWithUseDataSource from './components/people/LargeProductListItemWithUseDataSource'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -76,7 +79,7 @@ function App() {
   const LargePersonListWithUser = withUser(LargePersonListItem, 2);
   const UserFormWithEditableUser = withEditableUser(UserForm, 2)
   const ResourceUserFormWithEditable = withEditableResource(UserInfoForm, "users", "user", 2)
-const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "products", "product", 2)
+  const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "products", "product", 2)
 
 
 
@@ -117,6 +120,17 @@ const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "produ
           </ControlledOnboardingFlow>
           <h3>{Object.values(onboardingData)}</h3>
 
+          <div className='section'>
+            <h3>usePerson</h3>
+            <LargePersonListItemWithHook personId={1} />
+            <LargePersonListItemWithHook personId={3} />
+            <h3>useResource</h3>
+            <LargeProductListItem productId={1}/>
+            <LargeProductListItem productId={4}/>
+            <h3>useDataSource</h3>
+            <LargeProductListItemWithUseDataSource productId={4}/>
+          </div>
+
         </SplitScreenComponent>
 
 
@@ -124,7 +138,7 @@ const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "produ
         <SplitScreenComponent
           panelProps={rightPanelProps}>
           <NumberedList
-            items={people.slice(0,2)}
+            items={people.slice(0, 2)}
             resourceName="person"
             itemComponent={LargePersonListItem} />
 
@@ -137,9 +151,9 @@ const ProductInfoFormWithEditable = withEditableResource(ProductInfoForm, "produ
 
           <LargePersonListWrapped person={people[0]} printProp={"printProp"} />
           <LargePersonListWithUser />
-          <UserFormWithEditableUser/>
-          <ResourceUserFormWithEditable/>
-          <ProductInfoFormWithEditable/>
+          <UserFormWithEditableUser />
+          <ResourceUserFormWithEditable />
+          <ProductInfoFormWithEditable />
 
         </SplitScreenComponent>
 
