@@ -58,3 +58,25 @@ export const products = [
     rating: 4.9,
   },
 ]
+
+export const nestedObject = {
+  a: 1,
+  b: {
+    b1 : 4,
+    b2 : {
+      b23: "Hello it's b23"
+    },
+    b3 : {
+      b31 : {
+        message : "Hi from b31"
+      },
+      b32: {
+        message : "Hey I'm b32"
+      }
+    }
+  },
+  c : {
+    c1 : 3,
+    c2 : 4
+  }
+}

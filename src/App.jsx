@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import SplitScreen from './components/SplitScreen'
-import { people, products } from './components/data.js'
+import { people, products, nestedObject } from './components/data.js'
 import SplitScreenComponent from './components/SplitScreenComponent'
 import RegularList from './components/RegularList'
 import SmallPersonListItem from './components/people/SmallPersonListItem'
@@ -22,6 +22,7 @@ import ProductInfoForm from './components/ProductInfoForm'
 import LargePersonListItemWithHook from './components/people/LargePersonListItemWithHook'
 import LargeProductListItem from './components/people/LargeProductListItem'
 import LargeProductListItemWithUseDataSource from './components/people/LargeProductListItemWithUseDataSource'
+import RecursiveComponent from './components/RecursiveComponent'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -129,6 +130,10 @@ function App() {
             <LargeProductListItem productId={4}/>
             <h3>useDataSource</h3>
             <LargeProductListItemWithUseDataSource productId={4}/>
+          </div>
+          <div className="section">
+            <h3>Recursive Component</h3>
+            <RecursiveComponent data={nestedObject}/>
           </div>
 
         </SplitScreenComponent>
