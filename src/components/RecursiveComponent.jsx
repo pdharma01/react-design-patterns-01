@@ -1,13 +1,12 @@
-import { object } from "prop-types";
-import { nestedObject } from "./data"
-
 const isObject = (x) => typeof x === "object" && x !== null
 
 
-// data = nestedObject
+let keyCount = 0
+
 const RecursiveComponent = ({ data }) => {
 
-  // Bottom Base Case 
+  // bottom base case is value will not be a more nested object, 
+  // so return non-object value as li 
   if (!isObject(data)) {
     return (
       <li>{data}</li>
@@ -15,21 +14,21 @@ const RecursiveComponent = ({ data }) => {
   }
 
   const keyValuePairs = Object.entries(data)
-  console.log(keyValuePairs);
-
-
 
 
   return (
     <div>
-      {keyValuePairs.map(([key, value]) => (
-       (
-          <li>{key}:
+      {keyValuePairs.map(([key, value]) => {
+        keyCount += 1
+       return (
+          <li key={keyCount}>{key}:
             <ul>
-              <RecursiveComponent data={value} />
+              <RecursiveComponent data={value}/>
             </ul>
           </li>)
-      ))}
+      }
+      
+      )}
 
     </div>
   )

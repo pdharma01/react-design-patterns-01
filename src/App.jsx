@@ -23,6 +23,8 @@ import LargePersonListItemWithHook from './components/people/LargePersonListItem
 import LargeProductListItem from './components/people/LargeProductListItem'
 import LargeProductListItemWithUseDataSource from './components/people/LargeProductListItemWithUseDataSource'
 import RecursiveComponent from './components/RecursiveComponent'
+import { SmallRedButton, LargeGreenButton } from './components/composition'
+import { PartialLargeButton, PartialSmallRedButton } from './components/partiallyApplyHOC'
 
 function App() {
   const [shouldShow, setShouldShow] = useState(false)
@@ -134,6 +136,18 @@ function App() {
           <div className="section">
             <h3>Recursive Component</h3>
             <RecursiveComponent data={nestedObject}/>
+          </div>
+          <div className="section">
+            <h3>Composition</h3>
+            <p>Different versions of original component by adding props</p>
+            <SmallRedButton text="Small Red Button"/>
+            <LargeGreenButton text="Large Green Button"/>
+          </div>
+          <div className="section">
+            <h3>Partial Props</h3>
+            <p>Component in Partial Props Wrapper that combines partial subset of props with add-on props </p>
+            <PartialSmallRedButton text="Partial Red Button"/>
+            <PartialLargeButton text="Partial Large Green Button"/>
           </div>
 
         </SplitScreenComponent>
