@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import Splitscreen from './components/Splitscreen';
+import SplitscreenPanelComponent from './components/SplitscreenPanelComponent';
 
 // Layout Components - 
 // splitscreen
@@ -14,7 +16,20 @@ import './App.css';
 function App() {
     return (
         <>
-        <h1>Home</h1>
+            <Splitscreen>
+                <SplitscreenPanelComponent fr={10}>
+                    <p>panel1</p>
+                </SplitscreenPanelComponent>
+
+                <SplitscreenPanelComponent fr={2}>
+                    <p>panel2</p>
+                </SplitscreenPanelComponent>
+
+                <SplitscreenPanelComponent fr={5}>
+                    <p>panel3</p>
+                </SplitscreenPanelComponent>
+                
+            </Splitscreen>
         </>
     )
 }

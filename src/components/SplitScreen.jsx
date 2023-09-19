@@ -1,29 +1,18 @@
-import PropTypes from 'prop-types'
+const Splitscreen = ({ children }) => {
+  let columns = ""
+  children.forEach((child) => {
+    columns += `${child.props.fr}fr `;
+  })
 
-const SplitScreen = ({ children }) => {
-  const [left, right] = children;
-  const leftGridFR = left.props.panelProps.gridFR
-  const rightGridFR = right.props.panelProps.gridFR
 
   return (
     <div className="d-grid splitscreen-container"
-      style={{
-        gridTemplateColumns:
-          `${leftGridFR}fr 
-            ${rightGridFR}fr`
-      }}>
-      <div>
-        {left}
-      </div>
-      <div>
-        {right}
-      </div>
+      style={{gridTemplateColumns: columns}}>
+
+      {children}
+
     </div>
   )
 }
 
-
-SplitScreen.propTypes = {
-  children: PropTypes.array.isRequired
-}
-export default SplitScreen
+export default Splitscreen
